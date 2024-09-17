@@ -4,8 +4,12 @@ using UserManager.Entities;
 
 namespace UserManager.Contexts;
 
-public class PostgresDbContext(DbContextOptions<PostgresDbContext> options) : IdentityDbContext<User, Role, int>(options)
+public class PostgresDbContext : IdentityDbContext<User, Role, int>
 {
+    public PostgresDbContext(DbContextOptions<PostgresDbContext> options): base(options)
+    {
+        Database.EnsureCreated();
+    }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

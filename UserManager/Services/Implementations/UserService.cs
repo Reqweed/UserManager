@@ -81,6 +81,7 @@ public class UserService(SignInManager<User> signInManager, IMapper mapper) : IU
         var user = mapper.Map<UserForRegistrationDto, User>(userDto);
         
         user.RegistrationDate = DateTime.UtcNow;
+        user.LastLoginTime = DateTime.UtcNow;
         var result = await signInManager.UserManager.CreateAsync(user, userDto.Password);
         if (!result.Succeeded)
             throw new Exception(result.Errors.FirstOrDefault()?.Description);

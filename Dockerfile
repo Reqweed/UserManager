@@ -7,7 +7,7 @@ WORKDIR /src
 COPY ["UserManager/UserManager.csproj", "UserManager/"]
 RUN dotnet restore "UserManager/UserManager.csproj"
 COPY . . 
-WORKDIR "/src/GroceryShop"
+WORKDIR "/src/UserManager"
 RUN dotnet build "./UserManager.csproj" -c Release -o /app/build
 
 FROM build AS publish
